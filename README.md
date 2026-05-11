@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/banner.svg" width="100%" alt="Pulsar — Multi-Provider Terminal AI Coding Agent" />
+<img src="assets/banner.png" width="80%" alt="PULSAR — Multi-Provider Terminal AI Coding Agent" />
 
 <br/>
 
