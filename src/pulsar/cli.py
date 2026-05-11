@@ -25,6 +25,14 @@ from pulsar.ui.display import (
     show_permission_request,
     show_separator,
     show_goodbye,
+    # Stolen features
+    show_diff,
+    show_files_in_context,
+    show_plan,
+    show_edit_preview,
+    show_status_bar,
+    show_cost,
+    show_session_summary,
 )
 from pulsar.ui.spinner import thinking_spinner
 from pulsar.ui.themes import NEBULA, CYAN_GLOW, STARDUST, DUST, PLASMA
@@ -95,19 +103,25 @@ def _show_help() -> None:
 
 
 def _run_demo() -> None:
-    """Demo showcasing all UI components."""
+    """Demo showcasing ALL UI components — original + stolen features."""
     import time
 
     console.print()
     show_separator()
-    show_info("Running UI component demo...")
+    show_info("Running UI demo — all components...")
     console.print()
 
-    # 1. Thinking indicator
+    # ── STOLEN: Files in context (from Aider) ──
+    show_files_in_context([
+        "src/auth.py",
+        "src/models/user.py",
+        "tests/test_auth.py",
+    ])
+
+    # ── Thinking (original) ──
     show_thinking("Analyzing your codebase")
     console.print()
 
-    # 2. Thinking content (model reasoning)
     show_thinking_content(
         "The user wants to fix the login bug.\n"
         "1. Read the auth module\n"
@@ -115,7 +129,14 @@ def _run_demo() -> None:
         "3. Check test expectations"
     )
 
-    # 3. Tool calls with block-line output
+    # ── STOLEN: Plan display (from Codex CLI) ──
+    show_plan([
+        "Read src/auth.py to find the bug",
+        "Edit the password comparison logic",
+        "Run tests to verify the fix",
+    ])
+
+    # ── Tool calls (original + enhanced) ──
     show_tool_call("read_file", {"path": "src/auth.py"})
     show_tool_result("read_file", success=True)
     show_tool_output(
@@ -127,24 +148,37 @@ def _run_demo() -> None:
     )
     console.print()
 
+    # ── STOLEN: Edit preview (from Codex CLI) ──
+    show_edit_preview(
+        "src/auth.py", 42,
+        "    if password_hash == stored_hash:",
+        "    if hmac.compare_digest(password_hash, stored_hash):",
+    )
+
+    # ── Permission (original, panel style) ──
+    show_permission_request("Write File", "src/auth.py (1 line changed)")
+    console.print()
+
     show_tool_call("edit_file", {"path": "src/auth.py"})
     show_tool_result("edit_file", success=True)
     console.print()
 
+    # ── STOLEN: Diff viewer (from Aider) ──
+    show_diff(
+        "src/auth.py",
+        "    if password_hash == stored_hash:\n        return True",
+        "    if hmac.compare_digest(password_hash, stored_hash):\n        return True",
+    )
+
+    # ── Tool: run tests ──
     show_tool_call("run_command", {"command": "pytest tests/ -x"})
-    show_tool_result("run_command", success=False)
+    show_tool_result("run_command", success=True)
     console.print()
 
-    # 4. Permission prompt
-    show_info("Permission prompt example:")
-    show_permission_request("Write File", "src/auth.py (3 lines changed)")
-    console.print()
-
-    # 5. AI response with markdown
+    # ── Response (original, markdown) ──
     show_response(
-        "Fixed the timing attack vulnerability in `auth.py`. "
-        "The password comparison now uses `hmac.compare_digest()` "
-        "instead of `==`.\n\n"
+        "Fixed the timing attack in `auth.py`. "
+        "Now uses `hmac.compare_digest()` for constant-time comparison.\n\n"
         "```python\n"
         "import hmac\n"
         "if hmac.compare_digest(password_hash, stored_hash):\n"
@@ -152,16 +186,31 @@ def _run_demo() -> None:
         "All tests passing."
     )
 
-    # 6. Token usage
-    show_token_usage(1_847, 234, "gemini-2.5-flash")
+    # ── STOLEN: Cost display (from Aider) ──
+    show_cost(1_847, 234, "gemini-2.5-flash", 0.0012)
 
-    # 7. Status messages
+    # ── Status messages (original) ──
     console.print()
     show_success("All 12 tests passing")
     show_warning("Large file detected (>500KB)")
     show_error("API Error", "Rate limit exceeded. Retrying in 30s...")
 
-    show_separator()
+    # ── STOLEN: Status bar (from Claude Code) ──
+    show_status_bar(
+        model="gemini-2.5-flash",
+        total_tokens=4_231,
+        total_cost=0.0034,
+        turn=3,
+    )
+
+    # ── STOLEN: Session summary (end of session) ──
+    show_session_summary(
+        turns=3,
+        total_tokens=4_231,
+        total_cost=0.0034,
+        duration_secs=127,
+    )
+
     show_info("Demo complete!")
     console.print()
 

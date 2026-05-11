@@ -289,6 +289,215 @@ def show_info(message: str) -> None:
 
 
 # ═══════════════════════════════════════════════════════════════════
+# DIFF VIEWER — Stolen from Aider
+# Shows file changes with green/red +/- coloring
+# ═══════════════════════════════════════════════════════════════════
+
+def show_diff(filename: str, old_text: str, new_text: str) -> None:
+    """Display a colored diff of file changes — like git diff."""
+    console.print()
+
+    # Header
+    header = Text()
+    header.append(f"  {DIAMOND} ", style=f"bold {PLASMA}")
+    header.append(filename, style=f"bold underline {PLASMA}")
+    console.print(header)
+
+    old_lines = old_text.split("\n")
+    new_lines = new_text.split("\n")
+
+    # Simple line-by-line diff
+    import difflib
+    differ = difflib.unified_diff(
+        old_lines, new_lines,
+        fromfile=f"a/{filename}",
+        tofile=f"b/{filename}",
+        lineterm=""
+    )
+
+    for line in differ:
+        text = Text()
+        text.append("  ", style="")
+        if line.startswith("+++") or line.startswith("---"):
+            text.append(line, style=f"bold {DUST}")
+        elif line.startswith("@@"):
+            text.append(line, style=f"bold {NEBULA}")
+        elif line.startswith("+"):
+            text.append(line, style=f"bold {SOLAR_GREEN}")
+        elif line.startswith("-"):
+            text.append(line, style=f"bold {NOVA_RED}")
+        else:
+            text.append(line, style=f"{STARDUST}")
+        console.print(text)
+
+    console.print()
+
+
+# ═══════════════════════════════════════════════════════════════════
+# FILE TRACKER — Stolen from Aider
+# Shows which files are currently in context
+# ═══════════════════════════════════════════════════════════════════
+
+def show_files_in_context(files: list[str]) -> None:
+    """Show which files the agent currently has in context."""
+    if not files:
+        return
+
+    header = Text()
+    header.append(f"  {GEAR} ", style=f"bold {DUST}")
+    header.append(f"{len(files)} file{'s' if len(files) != 1 else ''} in context", style=f"{DUST}")
+    console.print(header)
+
+    for filepath in files:
+        line = Text()
+        line.append(f"    {BLOCK} ", style=f"{DEEP_GRAY}")
+        line.append(filepath, style=f"{PLASMA}")
+        console.print(line)
+
+    console.print()
+
+
+# ═══════════════════════════════════════════════════════════════════
+# PLAN DISPLAY — Stolen from Codex CLI
+# Shows what the agent plans to do before doing it
+# ═══════════════════════════════════════════════════════════════════
+
+def show_plan(steps: list[str]) -> None:
+    """Show the agent's execution plan before running it."""
+    console.print()
+    header = Text()
+    header.append(f"  {DIAMOND} ", style=f"bold {NEBULA}")
+    header.append("Plan", style=f"bold {WHITE_HOT}")
+    console.print(header)
+
+    for i, step in enumerate(steps, 1):
+        line = Text()
+        line.append(f"    {i}. ", style=f"bold {NEBULA}")
+        line.append(step, style=f"{STARDUST}")
+        console.print(line)
+
+    console.print()
+
+
+# ═══════════════════════════════════════════════════════════════════
+# EDIT PREVIEW — Stolen from Codex CLI
+# Shows exactly what will change before applying
+# ═══════════════════════════════════════════════════════════════════
+
+def show_edit_preview(filename: str, line_num: int, old_code: str, new_code: str) -> None:
+    """Preview an edit before applying — filename, line, before/after."""
+    console.print()
+    header = Text()
+    header.append(f"  {TOOL_ARROW} ", style=f"bold {COMET_ORANGE}")
+    header.append("Edit: ", style=f"bold {COMET_ORANGE}")
+    header.append(filename, style=f"bold underline {PLASMA}")
+    header.append(f" (line {line_num})", style=f"{DUST}")
+    console.print(header)
+
+    # Old code (red)
+    for line in old_code.split("\n"):
+        text = Text()
+        text.append(f"  {BLOCK} ", style=f"{NOVA_RED}")
+        text.append(f"- {line}", style=f"{NOVA_RED}")
+        console.print(text)
+
+    # New code (green)
+    for line in new_code.split("\n"):
+        text = Text()
+        text.append(f"  {BLOCK} ", style=f"{SOLAR_GREEN}")
+        text.append(f"+ {line}", style=f"{SOLAR_GREEN}")
+        console.print(text)
+
+    console.print()
+
+
+# ═══════════════════════════════════════════════════════════════════
+# STATUS BAR — Stolen from Claude Code
+# Persistent info strip showing model, tokens, session cost
+# ═══════════════════════════════════════════════════════════════════
+
+def show_status_bar(
+    model: str = "gemini-2.5-flash",
+    total_tokens: int = 0,
+    total_cost: float = 0.0,
+    turn: int = 0,
+) -> None:
+    """Compact status bar — shows session state at a glance."""
+    console.print(Rule(style=f"{DEEP_GRAY}"))
+
+    bar = Text(justify="center")
+    bar.append(f" {SPARK} ", style=f"{PLASMA}")
+    bar.append(model, style=f"bold {PLASMA}")
+    bar.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+    bar.append(f"turn {turn}", style=f"{DUST}")
+    bar.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+    bar.append(f"{total_tokens:,} tokens", style=f"{DUST}")
+    if total_cost > 0:
+        bar.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+        bar.append(f"${total_cost:.4f}", style=f"bold {STAR_GOLD}")
+    console.print(bar)
+
+    console.print(Rule(style=f"{DEEP_GRAY}"))
+
+
+# ═══════════════════════════════════════════════════════════════════
+# COST DISPLAY — Stolen from Aider
+# Show dollar cost alongside tokens
+# ═══════════════════════════════════════════════════════════════════
+
+def show_cost(
+    input_tokens: int, output_tokens: int,
+    model: str = "", cost: float = 0.0
+) -> None:
+    """Token usage + cost — everything on one line."""
+    line = Text()
+    line.append("  ", style="")
+    if model:
+        line.append(f"{SPARK} ", style=f"{PLASMA}")
+        line.append(model, style=f"{PLASMA}")
+        line.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+    line.append(f"{input_tokens:,} in", style=f"{DUST}")
+    line.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+    line.append(f"{output_tokens:,} out", style=f"{DUST}")
+    if cost > 0:
+        line.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+        line.append(f"${cost:.4f}", style=f"bold {STAR_GOLD}")
+    console.print(line)
+
+
+# ═══════════════════════════════════════════════════════════════════
+# SESSION SUMMARY — End of session stats
+# ═══════════════════════════════════════════════════════════════════
+
+def show_session_summary(
+    turns: int, total_tokens: int, total_cost: float, duration_secs: int
+) -> None:
+    """Show session summary when exiting — total stats."""
+    console.print()
+    console.print(Rule(style=f"{NEBULA_DIM}"))
+
+    header = Text(justify="center")
+    header.append(f" {STAR} ", style=f"bold {NEBULA}")
+    header.append("Session Summary", style=f"bold {WHITE_HOT}")
+    header.append(f" {STAR}", style=f"bold {NEBULA}")
+    console.print(header)
+    console.print()
+
+    # Stats grid
+    stats = Table.grid(padding=(0, 3))
+    stats.add_row(
+        Text(f"  {DIAMOND}  {turns} turns", style=f"{STARDUST}"),
+        Text(f"{SPARK}  {total_tokens:,} tokens", style=f"{STARDUST}"),
+        Text(f"$  ${total_cost:.4f}", style=f"bold {STAR_GOLD}"),
+        Text(f"{GEAR}  {duration_secs // 60}m {duration_secs % 60}s", style=f"{DUST}"),
+    )
+    console.print(stats, justify="center")
+
+    console.print()
+    console.print(Rule(style=f"{NEBULA_DIM}"))
+
+
+# ═══════════════════════════════════════════════════════════════════
 # MISC
 # ═══════════════════════════════════════════════════════════════════
 
