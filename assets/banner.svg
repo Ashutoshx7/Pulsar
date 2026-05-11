@@ -1,0 +1,35 @@
+<svg width="800" height="200" viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#12122a;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="text1" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#c792ea" />
+      <stop offset="50%" style="stop-color:#89ddff" />
+      <stop offset="100%" style="stop-color:#82aaff" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="200" fill="url(#bg)" rx="12" />
+
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="100" x2="800" y2="100" stroke="#1a1a3a" stroke-width="1" opacity="0.5"/>
+  <line x1="400" y1="0" x2="400" y2="200" stroke="#1a1a3a" stroke-width="1" opacity="0.5"/>
+
+  <!-- ASCII Art - PULSAR -->
+  <text font-family="'Courier New', Courier, monospace" font-size="11.5" fill="url(#text1)" font-weight="bold" xml:space="preserve">
+    <tspan x="50" dy="45"> ██████╗ ██╗   ██╗██╗     ███████╗ █████╗ ██████╗ </tspan>
+    <tspan x="50" dy="17"> ██╔══██╗██║   ██║██║     ██╔════╝██╔══██╗██╔══██╗</tspan>
+    <tspan x="50" dy="17"> ██████╔╝██║   ██║██║     ███████╗███████║██████╔╝ </tspan>
+    <tspan x="50" dy="17"> ██╔═══╝ ██║   ██║██║     ╚════██║██╔══██║██╔══██╗</tspan>
+    <tspan x="50" dy="17"> ██║     ╚██████╔╝███████╗███████║██║  ██║██║  ██║</tspan>
+    <tspan x="50" dy="17"> ╚═╝      ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="400" y="188" font-family="'Courier New', Courier, monospace" font-size="12" fill="#676e95" text-anchor="middle">
+    Multi-Provider Terminal AI Coding Agent  ·  Use any model. Pay nothing. Extend everything.
+  </text>
+</svg>

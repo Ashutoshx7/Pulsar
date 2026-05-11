@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:c792ea,50:82aaff,100:89ddff&height=200&section=header&text=PULSAR&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Multi-Provider%20Terminal%20AI%20Coding%20Agent&descAlignY=58&descAlign=50&descSize=18" width="100%" />
+<img src="assets/banner.svg" width="100%" alt="Pulsar — Multi-Provider Terminal AI Coding Agent" />
 
 <br/>
 
