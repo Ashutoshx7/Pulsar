@@ -1,98 +1,129 @@
 <div align="center">
 
-```
-██████╗ ██╗   ██╗██╗     ███████╗ █████╗ ██████╗
-██╔══██╗██║   ██║██║     ██╔════╝██╔══██╗██╔══██╗
-██████╔╝██║   ██║██║     ███████╗███████║██████╔╝
-██╔═══╝ ██║   ██║██║     ╚════██║██╔══██║██╔══██╗
-██║     ╚██████╔╝███████╗███████║██║  ██║██║  ██║
-╚═╝      ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=13&duration=1&pause=99999&color=C792EA&center=true&vCenter=true&multiline=true&repeat=false&width=600&height=120&lines=%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%95%97+%E2%96%88%E2%96%88%E2%95%97+++%E2%96%88%E2%96%88%E2%95%97%E2%96%88%E2%96%88%E2%95%97+++++%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%95%97+%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%95%97+%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%95%97;%E2%96%88%E2%96%88%E2%95%94%E2%95%90%E2%95%90%E2%96%88%E2%96%88%E2%95%97%E2%96%88%E2%96%88%E2%95%91+++%E2%96%88%E2%96%88%E2%95%91%E2%96%88%E2%96%88%E2%95%91+++++%E2%96%88%E2%96%88%E2%95%94%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%9D%E2%96%88%E2%96%88%E2%95%94%E2%95%90%E2%95%90%E2%96%88%E2%96%88%E2%95%97%E2%96%88%E2%96%88%E2%95%94%E2%95%90%E2%95%90%E2%96%88%E2%96%88%E2%95%97" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=1&pause=99999&color=C792EA&center=true&vCenter=true&repeat=false&width=400&height=60&lines=PULSAR" alt="Pulsar" />
+</picture>
 
-### The terminal AI coding agent that works with any model
+<br/>
+
+**The terminal AI coding agent that works with any model**
 
 <br/>
 
 [![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Models](https://img.shields.io/badge/Models-Gemini_%7C_Claude_%7C_GPT_%7C_Ollama-8E75B2?style=for-the-badge&logo=openai&logoColor=white)](#roadmap)
+[![Models](https://img.shields.io/badge/Models-Gemini%20%7C%20Claude%20%7C%20GPT%20%7C%20Ollama-c792ea?style=for-the-badge&logoColor=white)](#roadmap)
 [![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.1.0-F97316?style=for-the-badge)](https://github.com/Ashutoshx7/Pulsar/releases)
+[![Version](https://img.shields.io/badge/Version-0.1.0-f78c6c?style=for-the-badge)](https://github.com/Ashutoshx7/Pulsar/releases)
+[![Stars](https://img.shields.io/github/stars/Ashutoshx7/Pulsar?style=for-the-badge&color=ffcb6b)](https://github.com/Ashutoshx7/Pulsar)
 
 <br/>
 
-> **Use any AI model. Pay nothing. Extend everything.**
+*Use any AI model. Pay nothing. Extend everything.*
 
 <br/>
 
-[Get Started](#install) · [Features](#features) · [Architecture](#architecture) · [Roadmap](#roadmap) · [Contributing](#contributing)
+[Get Started](#-install) &nbsp;·&nbsp; [Features](#-features) &nbsp;·&nbsp; [Architecture](#-architecture) &nbsp;·&nbsp; [Roadmap](#-roadmap) &nbsp;·&nbsp; [Contributing](#-contributing)
 
 </div>
 
 <br/>
-
----
 
 ## Why Pulsar?
 
-Every other terminal coding agent is locked to one company's model. Claude Code needs Anthropic. Codex needs OpenAI. Gemini CLI needs Google.
+Every other terminal coding agent locks you to one company.
 
-Pulsar works with all of them. Free Gemini by default. Switch to Claude for complex reasoning. Run Llama locally with Ollama when you need privacy. One beautiful interface, any brain.
+> Claude Code needs Anthropic. Codex needs OpenAI. Gemini CLI needs Google.
+
+Pulsar breaks that. Use free Gemini by default. Switch to Claude for complex reasoning. Run Llama locally with Ollama for total privacy. One beautiful interface, any brain, on your terms.
 
 <br/>
 
 <div align="center">
 
-| | Claude Code | Aider | Codex CLI | **Pulsar** |
+|  | Claude Code | Aider | Codex CLI | **Pulsar** |
 |:--|:--:|:--:|:--:|:--:|
-| Multi-provider | ❌ | ✅ | ❌ | ✅ |
-| Native tool calling | ✅ | ❌ | ✅ | ✅ |
-| Rich terminal UI | ✅ | ❌ | ❌ | ✅ |
+| Multi-provider support | ❌ | ✅ | ❌ | ✅ |
+| Native function calling | ✅ | ❌ | ✅ | ✅ |
+| Premium terminal UI | ✅ | ❌ | ❌ | ✅ |
+| Inline git diff display | ❌ | ✅ | ❌ | ✅ |
+| Plan before execution | ❌ | ❌ | ✅ | ✅ |
+| Session cost tracking | ✅ | ✅ | ❌ | ✅ |
 | MCP support | ✅ | ❌ | ✅ | 🔜 |
 | Plugin system | ❌ | ❌ | ❌ | 🔜 |
 | Free by default | ❌ | ✅ | ❌ | ✅ |
-| Fully open source | ❌ | ✅ | ✅ | ✅ |
+| Open source | ❌ | ✅ | ✅ | ✅ |
 
 </div>
 
 <br/>
 
----
-
-## Features
+## ✦ Features
 
 <br/>
 
-<div align="center">
+<table>
+<tr>
+<td width="50%">
 
-**⚡ Agentic Loop** · **🎨 Premium TUI** · **🔧 6 Tools** · **🔒 Permission System** · **🌐 Multi-Provider**
+### ⚡ Agentic Loop
 
-</div>
+Multi-turn function calling loop. Pulsar reads files, edits code, runs tests, and searches your codebase. It streams results live and stops for approval before anything destructive.
+
+</td>
+<td width="50%">
+
+### 🎨 Cosmic Terminal UI
+
+Built with Rich. Syntax-highlighted code, animated thinking spinner, colored git diffs, persistent status bar, session cost tracking, and a stunning welcome banner.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 🌐 Any Model, Any Time
+
+Gemini 2.5 Flash free by default. Switch to Claude, GPT-4o, or local Ollama with one command. The adapter pattern means adding a new provider is just one class.
+
+</td>
+<td width="50%">
+
+### 🔒 Permission System
+
+Every file write and shell command requires your approval. You see the full edit preview before anything is touched. Three modes: suggest, auto-edit, or full auto.
+
+</td>
+</tr>
+<tr>
+<td width="50%">
+
+### 📋 Plan Before Execute
+
+Stolen from Codex CLI. Pulsar shows you a numbered plan of what it intends to do before it does anything. You see the full picture, not just one step at a time.
+
+</td>
+<td width="50%">
+
+### 🔧 Extensible Tools
+
+Read files, write files, surgical edits, run shell commands, search codebase, list directories. More tools coming. Plugin system in v0.4.0.
+
+</td>
+</tr>
+</table>
 
 <br/>
 
-**The Agent**
+## 📦 Install
 
-The core is a multi-turn agentic loop powered by native function calling. Pulsar reads your files, edits code, runs commands, searches your codebase, and commits to git. All while streaming responses in real time. When something requires your approval, it stops and asks. Every destructive action needs your explicit yes.
-
-**The Interface**
-
-Pulsar has a cosmic-themed terminal UI built with Rich. Responses stream word by word with syntax-highlighted code blocks. Tool calls appear with a warm orange icon as they happen. File diffs show green additions and red removals inline. A persistent status bar tracks your model, turn count, and session cost. When you exit, a summary shows total tokens and time spent.
-
-**The Philosophy**
-
-No vendor lock-in. No mandatory subscriptions. Transparent costs. Full control over what runs on your machine.
-
-<br/>
-
----
-
-## Install
+**From PyPI:**
 
 ```bash
 pip install pulsar-agent
 ```
 
-Or install from source for the latest changes:
+**From source:**
 
 ```bash
 git clone https://github.com/Ashutoshx7/Pulsar.git
@@ -103,21 +134,19 @@ pip install -e .
 
 <br/>
 
----
+## ⚙️ Setup
 
-## Setup
+**Step 1. Get a free Gemini API key**
 
-**1. Get a free API key**
+Visit [aistudio.google.com/apikey](https://aistudio.google.com/apikey). The free tier has a generous limit, more than enough for daily coding use.
 
-Go to [aistudio.google.com/apikey](https://aistudio.google.com/apikey) and create a key. The free tier gives you more than enough to work with.
-
-**2. Add it to your project**
+**Step 2. Add it to your project**
 
 ```bash
 echo "GOOGLE_API_KEY=your_key_here" > .env
 ```
 
-**3. Run it**
+**Step 3. Launch Pulsar**
 
 ```bash
 pulsar
@@ -125,44 +154,40 @@ pulsar
 
 <br/>
 
----
+## 💬 Usage
 
-## Usage
-
-Type any coding task in plain English:
+Type any task in natural language:
 
 ```
-› Fix the timing attack vulnerability in src/auth.py
-› Add type hints to all functions in utils.py
-› Write tests for the UserService class
-› Refactor the database module to use async/await
-› Explain what this codebase does
+ › Fix the timing attack vulnerability in src/auth.py
+ › Add type hints to every function in utils.py
+ › Write tests for the UserService class
+ › Refactor the database layer to use async/await
+ › What does this codebase actually do?
 ```
 
-Pulsar will plan the approach, show you each step, ask for approval before touching your files, and report results.
+Pulsar plans the approach, previews every change, asks for approval, and reports the result.
 
-**Slash commands available inside Pulsar:**
+**Commands inside Pulsar:**
 
-| Command | What it does |
-|:--------|:-------------|
+| Command | Description |
+|:--------|:------------|
 | `/help` | Show all commands |
-| `/demo` | Preview every UI component |
+| `/demo` | Preview every UI component live |
 | `/model` | Switch provider or model |
-| `/clear` | Clear the screen |
+| `/clear` | Clear the terminal |
 | `/version` | Show current version |
 | `/exit` | Quit Pulsar |
 
 <br/>
 
----
+## 🏗 Architecture
 
-## Architecture
+Pulsar is built on two patterns that keep everything modular.
 
-Pulsar is built around two core patterns that make it extensible.
+**Provider Adapter**
 
-**Adapter Pattern for Providers**
-
-Every AI provider implements the same `LLMProvider` abstract class. The agentic loop never knows which model it is talking to. Adding a new provider means writing one class. Nothing else changes.
+Every AI model implements one interface. The agentic loop never knows which model it is talking to. Swap providers without touching the loop.
 
 ```python
 class LLMProvider(ABC):
@@ -173,9 +198,9 @@ class LLMProvider(ABC):
     def stream(self, messages, tools) -> Iterator[str]: ...
 ```
 
-**Registry Pattern for Tools**
+**Tool Registry**
 
-Every tool registers itself with the `ToolRegistry`. The agent calls tools by name. Adding a new tool means writing one class and one line of registration code.
+Tools register themselves. The agent calls them by name. Adding a new tool is one class and one line.
 
 ```python
 registry = ToolRegistry()
@@ -184,41 +209,40 @@ registry.register(WriteFileTool())
 registry.register(RunCommandTool())
 ```
 
-**The Agentic Loop**
+**The Loop**
 
 ```
-You type a message
+ › You send a message
         ↓
-Sent to model with tool declarations
+ Sent to model with all tool declarations
         ↓
-Model wants to call a tool?
-    ├── Yes → Run tool → Send result back → repeat
-    └── No  → Stream final answer to you
+ Model calls a tool?
+    ├── Yes  →  Run tool  →  Send result back  →  repeat
+    └── No   →  Stream final answer to terminal
 ```
 
-<br/>
-
-**Project layout:**
+**Project structure:**
 
 ```
 src/pulsar/
-├── cli.py                  Entry point and input loop
+├── cli.py                  Entry point, input loop, slash commands
 ├── agent/
 │   ├── loop.py             The agentic loop
-│   └── messages.py         Conversation history manager
+│   └── messages.py         Conversation history and compaction
 ├── llm/
 │   ├── base.py             LLMProvider abstract class
-│   └── gemini.py           Gemini 2.5 Flash implementation
+│   ├── gemini.py           Gemini implementation
+│   └── ollama.py           Ollama (local) implementation
 ├── tools/
 │   ├── registry.py         Tool registry and executor
-│   ├── read_file.py        Read any file
-│   ├── write_file.py       Create new files
-│   ├── edit_file.py        Surgical find-and-replace edits
+│   ├── read_file.py        Read any file into context
+│   ├── write_file.py       Create files with approval
+│   ├── edit_file.py        Surgical find and replace
 │   ├── run_command.py      Shell commands with approval
-│   └── search_files.py     Search across your codebase
+│   └── search_files.py     Ripgrep-powered codebase search
 ├── ui/
-│   ├── themes.py           Color palette and icons
-│   ├── console.py          Global Rich console instance
+│   ├── themes.py           Color palette and icon system
+│   ├── console.py          Global Rich console
 │   ├── display.py          Every visual component
 │   └── spinner.py          Animated thinking indicator
 └── config/
@@ -227,43 +251,28 @@ src/pulsar/
 
 <br/>
 
----
-
-## Roadmap
+## 🗺 Roadmap
 
 <br/>
 
 <div align="center">
 
-```
-v0.1.0   v0.2.0   v0.3.0   v0.4.0   v0.5.0   v1.0.0
-  UI   →  Agent  →  Multi  →  MCP   →  Smart  →  Ship
- Done    In Dev   Provider  Plugins  Memory   Prod
-```
+| Version | Focus | Status |
+|:-------:|:------|:------:|
+| `v0.1.0` | UI system, CLI skeleton, slash commands, cosmic theme | ✅ Done |
+| `v0.2.0` | Gemini provider, agentic loop, 6 tools, file editing | 🔧 Building |
+| `v0.3.0` | Claude, GPT-4o, Ollama support, live model switching | 🔜 |
+| `v0.4.0` | MCP protocol client, Python plugin system | 🔜 |
+| `v0.5.0` | Codebase indexing, web search, persistent memory | 🔜 |
+| `v1.0.0` | Headless CI mode, Docker sandbox, auto-loop | 🔜 |
 
 </div>
 
 <br/>
 
-**v0.1.0** · UI system, CLI skeleton, slash commands, demo mode ✅
+## 🤝 Contributing
 
-**v0.2.0** · Gemini provider connected, full agentic loop, 6 tools, file editing 🔧
-
-**v0.3.0** · Claude, GPT-4o, and Ollama providers, live model switching 🔜
-
-**v0.4.0** · MCP protocol client, Python plugin system 🔜
-
-**v0.5.0** · Codebase indexing, web search, persistent memory 🔜
-
-**v1.0.0** · Headless CI mode, Docker sandbox, auto-loop for autonomous tasks 🔜
-
-<br/>
-
----
-
-## Contributing
-
-Pulsar is actively being built in public. Contributions are welcome at any stage.
+Pulsar is built in public. All contributions are welcome.
 
 ```bash
 git clone https://github.com/Ashutoshx7/Pulsar.git
@@ -271,9 +280,10 @@ cd Pulsar
 python -m venv .venv && source .venv/bin/activate
 pip install -e .
 pulsar --version
+# type /demo to see the full UI
 ```
 
-Open an issue before starting large changes. Small fixes and improvements can go straight to a pull request.
+Open an issue before large changes. Small fixes can go straight to a PR.
 
 <br/>
 
@@ -281,12 +291,12 @@ Open an issue before starting large changes. Small fixes and improvements can go
 
 <div align="center">
 
-Built with Python · Works with any LLM · Inspired by Claude Code, Aider, and Codex CLI
+Built with Python &nbsp;·&nbsp; Works with any LLM &nbsp;·&nbsp; Inspired by Claude Code, Aider, and Codex CLI
 
 <br/>
 
-*If this project is useful to you, consider giving it a star.*
+**If Pulsar is useful to you, a star means a lot.**
 
-[![Star on GitHub](https://img.shields.io/github/stars/Ashutoshx7/Pulsar?style=social)](https://github.com/Ashutoshx7/Pulsar)
+[![Star on GitHub](https://img.shields.io/github/stars/Ashutoshx7/Pulsar?style=for-the-badge&color=ffcb6b&logo=github)](https://github.com/Ashutoshx7/Pulsar)
 
 </div>
