@@ -1,10 +1,10 @@
-"""Pulsar CLI — The main entry point. This is what runs when you type 'pulsar'.
+"""Pulsar CLI — Main entry point.
 
-This file handles:
-1. The Click CLI framework setup (--version, --provider, --model flags)
-2. The main input loop (read user input → process → display)
-3. Slash command routing (/help, /clear, /exit)
-4. Graceful shutdown on Ctrl+C
+Handles:
+1. Click CLI setup (--version, --provider, --model)
+2. Interactive input loop
+3. Slash command routing
+4. Graceful shutdown
 """
 
 import click
@@ -33,12 +33,10 @@ from pulsar.ui.display import (
 from pulsar.ui.spinner import thinking_spinner
 
 
-# ═══════════════════════════════════════════════════════════════════
-# SLASH COMMANDS
-# ═══════════════════════════════════════════════════════════════════
+# ─── Slash Commands ─────────────────────────────────────────────────
 
 def handle_slash_command(command: str) -> bool:
-    """Handle slash commands. Returns True if the command was handled."""
+    """Handle slash commands. Returns True if handled."""
     cmd = command.strip().lower()
 
     if cmd in ("/exit", "/quit", "/q"):
@@ -55,7 +53,7 @@ def handle_slash_command(command: str) -> bool:
         return True
 
     elif cmd == "/version":
-        show_info(f"Pulsar v{__version__}")
+        show_info(f"pulsar v{__version__}")
         return True
 
     elif cmd == "/demo":
@@ -63,118 +61,111 @@ def handle_slash_command(command: str) -> bool:
         return True
 
     else:
-        show_warning(f"Unknown command: {cmd}. Type /help for available commands.")
+        show_warning(f"unknown command: {cmd}")
         return True
 
 
 def _show_help() -> None:
-    """Display available slash commands."""
-    from rich.table import Table
-    from pulsar.ui.themes import NEBULA, CYAN_GLOW, STARDUST, DUST
+    """Minimal help display."""
+    from pulsar.ui.themes import FG, FG_MUTED, FG_DIM, CYAN, ACCENT
+    from rich.text import Text
 
     console.print()
-    table = Table(
-        show_header=True,
-        header_style=f"bold {CYAN_GLOW}",
-        border_style=f"{DUST}",
-        title="Commands",
-        title_style=f"bold {NEBULA}",
-        padding=(0, 2),
-    )
-    table.add_column("Command", style=f"bold {CYAN_GLOW}", min_width=12)
-    table.add_column("Description", style=f"{STARDUST}")
-
     commands = [
-        ("/help", "Show this help message"),
-        ("/clear", "Clear the screen"),
-        ("/version", "Show Pulsar version"),
-        ("/demo", "Run a visual demo of all UI components"),
-        ("/exit", "Exit Pulsar"),
+        ("/help", "show this message"),
+        ("/clear", "clear screen"),
+        ("/version", "show version"),
+        ("/model", "switch model (coming soon)"),
+        ("/demo", "preview all UI components"),
+        ("/exit", "quit pulsar"),
     ]
     for cmd, desc in commands:
-        table.add_row(cmd, desc)
-
-    console.print(table)
+        line = Text()
+        line.append(f"  {cmd:<12}", style=f"bold {CYAN}")
+        line.append(desc, style=f"{FG_DIM}")
+        console.print(line)
     console.print()
 
 
 def _run_demo() -> None:
-    """Run a demo showcasing all UI components — for development/testing."""
+    """Demo all UI components — for development/testing."""
     import time
 
     console.print()
     show_separator()
-    show_info("Running UI component demo...")
+    show_info("running UI demo...")
     console.print()
 
-    # 1. Thinking indicator
-    show_thinking("Analyzing your codebase")
-    time.sleep(0.5)
-
-    # 2. Tool calls
+    # Thinking
+    show_thinking("analyzing codebase")
     console.print()
-    show_tool_call("read_file", {"path": "src/main.py"})
-    show_tool_result("read_file", success=True)
-    show_tool_output("def main():\n    print('Hello, Pulsar!')\n    return 0")
 
-    console.print()
-    show_tool_call("run_command", {"command": "pytest tests/"})
-    show_tool_result("run_command", success=False)
-
-    # 3. Permission request (auto-deny in demo)
-    console.print()
-    show_info("Permission prompt example (press 'n' or Enter to continue):")
-    show_permission_request("Write File", "Create new file: src/pulsar/tools/git_status.py")
-
-    # 4. Thinking content
-    console.print()
+    # Thinking content (model reasoning)
     show_thinking_content(
-        "The user wants to fix the login bug. I should:\n"
+        "The user wants to fix the login bug.\n"
         "1. Read the auth module\n"
         "2. Find the validation logic\n"
-        "3. Check the test file for expected behavior"
+        "3. Check test expectations"
     )
 
-    # 5. Response with markdown
+    # Tool calls
+    show_tool_call("read_file", {"path": "src/auth.py"})
+    show_tool_result("read_file", success=True)
+    show_tool_output(
+        "def verify_password(password, stored_hash):\n"
+        "    password_hash = hash_password(password)\n"
+        "    if password_hash == stored_hash:  # BUG: timing attack\n"
+        "        return True\n"
+        "    return False"
+    )
     console.print()
+
+    show_tool_call("edit_file", {"path": "src/auth.py", "old": "==", "new": "hmac.compare_digest"})
+    show_tool_result("edit_file", success=True)
+    console.print()
+
+    show_tool_call("run_command", {"command": "pytest tests/ -x"})
+    show_tool_result("run_command", success=False)
+    console.print()
+
+    # Permission
+    show_info("permission prompt example:")
+    show_permission_request("write file", "src/auth.py (3 lines changed)")
+    console.print()
+
+    # Response
     show_response(
-        "I found the bug in `auth.py`. The issue is on **line 42** where "
-        "the password hash comparison uses `==` instead of a "
-        "constant-time comparison.\n\n"
+        "Fixed the timing attack vulnerability in `auth.py`. "
+        "The password comparison now uses `hmac.compare_digest()` "
+        "instead of `==`.\n\n"
         "```python\n"
-        "# Before (vulnerable)\n"
-        "if password_hash == stored_hash:\n\n"
-        "# After (secure)\n"
         "import hmac\n"
         "if hmac.compare_digest(password_hash, stored_hash):\n"
         "```\n\n"
-        "This prevents timing attacks. Want me to apply this fix?"
+        "All tests passing."
     )
 
-    # 6. Token usage
+    # Token usage
     show_token_usage(1_847, 234, "gemini-2.5-flash")
 
-    # 7. Status messages
+    # Status messages
     console.print()
-    show_success("All 12 tests passing")
-    show_warning("Large file detected (>500KB), consider chunking")
-    show_error("API Error", "Rate limit exceeded. Retrying in 30s...")
+    show_success("12 tests passing")
+    show_warning("large file detected (>500KB)")
+    show_error("rate limit", "retrying in 30s...")
 
-    console.print()
     show_separator()
-    show_info("Demo complete!")
+    show_info("demo complete")
     console.print()
 
 
-# ═══════════════════════════════════════════════════════════════════
-# INPUT LOOP
-# ═══════════════════════════════════════════════════════════════════
+# ─── Input Loop ─────────────────────────────────────────────────────
 
 def get_user_input() -> str:
-    """Get input from the user using prompt_toolkit for better editing."""
+    """Get input using prompt_toolkit."""
     try:
         user_input = pt_prompt(
-            HTML('<style fg="#c792ea" bold="true"> › </style>'),
+            HTML('<style fg="#a78bfa" bold="true"> ❯ </style>'),
         )
         return user_input.strip()
     except (EOFError, KeyboardInterrupt):
@@ -182,7 +173,7 @@ def get_user_input() -> str:
 
 
 def input_loop() -> None:
-    """The main interactive loop — read input, process, display."""
+    """Main interactive loop."""
     while True:
         try:
             user_input = get_user_input()
@@ -190,21 +181,19 @@ def input_loop() -> None:
             if not user_input:
                 continue
 
-            # Route slash commands
             if user_input.startswith("/"):
                 handle_slash_command(user_input)
                 continue
 
-            # TODO: Day 2 — Send to LLM provider and get response
-            # For now, echo back with a placeholder
-            with thinking_spinner("Processing"):
+            # TODO: Day 2 — send to LLM provider
+            with thinking_spinner("processing"):
                 import time
-                time.sleep(1)  # Simulate API call
+                time.sleep(1)
 
             show_response(
-                f"**Echo mode** — LLM provider not connected yet.\n\n"
-                f"You said: *\"{user_input}\"*\n\n"
-                f"Connect a provider on Day 2 to get real responses."
+                f"*echo mode* — no provider connected yet.\n\n"
+                f"> {user_input}\n\n"
+                f"Connect Gemini on Day 2 to get real responses."
             )
             show_token_usage(0, 0, "none")
 
@@ -216,16 +205,14 @@ def input_loop() -> None:
             break
 
 
-# ═══════════════════════════════════════════════════════════════════
-# CLI ENTRY POINT
-# ═══════════════════════════════════════════════════════════════════
+# ─── Entry Point ────────────────────────────────────────────────────
 
 @click.command()
-@click.version_option(version=__version__, prog_name="Pulsar")
-@click.option("--provider", default="gemini", help="LLM provider to use")
-@click.option("--model", default=None, help="Specific model to use")
+@click.version_option(version=__version__, prog_name="pulsar")
+@click.option("--provider", default="gemini", help="LLM provider")
+@click.option("--model", default=None, help="Model to use")
 def main(provider: str, model: str) -> None:
-    """Pulsar — Multi-Provider AI Coding Agent"""
+    """pulsar — multi-provider AI coding agent"""
     show_welcome()
     input_loop()
 

@@ -1,92 +1,81 @@
-"""Pulsar Cosmic Theme — The color system that makes Pulsar feel alive.
+"""Pulsar Theme — Clean, professional, minimal.
 
-Every color is handpicked for a dark terminal. Think deep space:
-nebula purples, electric cyans, warm star golds, and cold void grays.
+Design philosophy: Claude Code meets Vercel.
+- Restrained color use — most text is white/gray
+- Color only for SEMANTIC meaning (success, error, accent)
+- Plenty of whitespace
+- Thin, subtle borders
+- Typography does the heavy lifting
 """
 
 from rich.theme import Theme
 from rich.style import Style
 
 # ─── Core Palette ───────────────────────────────────────────────────
-# These are the raw hex colors. Everything else references these.
+# Inspired by Vercel/Linear dark mode — clean, not flashy.
 
-VOID = "#0a0a0f"           # Deep space black (backgrounds)
-NEBULA = "#c792ea"         # Soft purple (primary accent)
-NEBULA_DIM = "#7c4dab"     # Muted purple (secondary)
-PLASMA = "#82aaff"         # Electric blue (info, links)
-CYAN_GLOW = "#89ddff"      # Bright cyan (highlights)
-STAR_GOLD = "#ffcb6b"      # Warm gold (warnings, emphasis)
-NOVA_RED = "#ff5370"        # Alert red (errors, danger)
-SOLAR_GREEN = "#c3e88d"    # Lime green (success, approved)
-COMET_ORANGE = "#f78c6c"   # Warm orange (tool calls)
-DUST = "#676e95"           # Cool gray (muted text, borders)
-STARDUST = "#a6accd"       # Light gray (secondary text)
-WHITE_HOT = "#eeffff"      # Near-white (primary text)
+BG = "#0a0a0a"              # True dark
+FG = "#ededed"              # Primary text — bright but not blinding
+FG_MUTED = "#888888"        # Secondary text
+FG_DIM = "#555555"          # Tertiary / borders
+FG_FAINT = "#333333"        # Very subtle separators
 
-# ─── Semantic Styles ────────────────────────────────────────────────
+ACCENT = "#a78bfa"          # Violet — primary brand accent
+ACCENT_DIM = "#7c6aad"     # Muted violet
+BLUE = "#60a5fa"            # Links, model names
+CYAN = "#67e8f9"            # Highlights, interactive
+GREEN = "#4ade80"           # Success
+YELLOW = "#fbbf24"          # Warnings
+RED = "#f87171"             # Errors
+ORANGE = "#fb923c"          # Tool calls
+
+# ─── Theme ──────────────────────────────────────────────────────────
 
 PULSAR_THEME = Theme({
     # Text hierarchy
-    "primary": Style(color=WHITE_HOT),
-    "secondary": Style(color=STARDUST),
-    "muted": Style(color=DUST),
-    "dim": Style(color=DUST, dim=True),
+    "primary": Style(color=FG),
+    "secondary": Style(color=FG_MUTED),
+    "muted": Style(color=FG_DIM),
+    "dim": Style(color=FG_FAINT),
 
     # Brand
-    "accent": Style(color=NEBULA, bold=True),
-    "accent.dim": Style(color=NEBULA_DIM),
-    "brand": Style(color=NEBULA, bold=True),
+    "accent": Style(color=ACCENT),
+    "accent.bold": Style(color=ACCENT, bold=True),
+    "accent.dim": Style(color=ACCENT_DIM),
 
     # Semantic
-    "info": Style(color=PLASMA),
-    "success": Style(color=SOLAR_GREEN),
-    "warning": Style(color=STAR_GOLD),
-    "error": Style(color=NOVA_RED, bold=True),
-    "danger": Style(color=NOVA_RED),
+    "info": Style(color=BLUE),
+    "success": Style(color=GREEN),
+    "warning": Style(color=YELLOW),
+    "error": Style(color=RED, bold=True),
 
-    # UI Elements
-    "prompt": Style(color=CYAN_GLOW, bold=True),
-    "prompt.arrow": Style(color=NEBULA, bold=True),
-    "border": Style(color=DUST),
-    "border.accent": Style(color=NEBULA_DIM),
-    "header": Style(color=WHITE_HOT, bold=True),
-    "subheader": Style(color=STARDUST, italic=True),
+    # UI
+    "prompt": Style(color=ACCENT, bold=True),
+    "border": Style(color=FG_DIM),
+    "border.subtle": Style(color=FG_FAINT),
+    "header": Style(color=FG, bold=True),
 
-    # Agent-specific
-    "tool.name": Style(color=COMET_ORANGE, bold=True),
-    "tool.arg": Style(color=STARDUST),
-    "tool.result": Style(color=SOLAR_GREEN),
-    "tool.error": Style(color=NOVA_RED),
-    "thinking": Style(color=NEBULA_DIM, italic=True),
-    "model": Style(color=PLASMA, bold=True),
-    "tokens": Style(color=DUST),
-    "cost": Style(color=STAR_GOLD),
+    # Agent
+    "tool.name": Style(color=ORANGE, bold=True),
+    "tool.arg": Style(color=FG_MUTED),
+    "thinking": Style(color=ACCENT_DIM, italic=True),
+    "model": Style(color=BLUE),
+    "tokens": Style(color=FG_DIM),
+    "cost": Style(color=YELLOW),
 
     # Code
-    "code": Style(color=CYAN_GLOW),
-    "code.inline": Style(color=SOLAR_GREEN),
-    "filename": Style(color=PLASMA, underline=True),
-    "line_number": Style(color=DUST),
+    "code": Style(color=CYAN),
+    "filename": Style(color=BLUE, underline=True),
 })
 
-# ─── Box Characters ─────────────────────────────────────────────────
-# For custom borders and separators
+# ─── Icons (minimal, tasteful) ──────────────────────────────────────
 
-HORIZONTAL_LINE = "─"
-VERTICAL_LINE = "│"
-TOP_LEFT = "╭"
-TOP_RIGHT = "╮"
-BOTTOM_LEFT = "╰"
-BOTTOM_RIGHT = "╯"
-DOT = "•"
-ARROW_RIGHT = "→"
-CHEVRON = "›"
-DIAMOND = "◆"
-CIRCLE = "●"
-STAR = "✦"
-SPARK = "⚡"
-GEAR = "⚙"
+PROMPT_CHAR = "❯"
+ARROW = "→"
+DOT = "·"
 CHECK = "✓"
-CROSS = "✗"
-WARNING_ICON = "⚠"
-LOCK = "🔒"
+CROSS = "✕"
+WARN = "!"
+TOOL_ICON = "▸"
+THINK_ICON = "◌"
+BLOCK = "│"
