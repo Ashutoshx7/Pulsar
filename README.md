@@ -1,29 +1,24 @@
 <div align="center">
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://readme-typing-svg.demolab.com?font=Fira+Code&size=13&duration=1&pause=99999&color=C792EA&center=true&vCenter=true&multiline=true&repeat=false&width=600&height=120&lines=%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%95%97+%E2%96%88%E2%96%88%E2%95%97+++%E2%96%88%E2%96%88%E2%95%97%E2%96%88%E2%96%88%E2%95%97+++++%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%95%97+%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%95%97+%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%96%88%E2%95%97;%E2%96%88%E2%96%88%E2%95%94%E2%95%90%E2%95%90%E2%96%88%E2%96%88%E2%95%97%E2%96%88%E2%96%88%E2%95%91+++%E2%96%88%E2%96%88%E2%95%91%E2%96%88%E2%96%88%E2%95%91+++++%E2%96%88%E2%96%88%E2%95%94%E2%95%90%E2%95%90%E2%95%90%E2%95%90%E2%95%9D%E2%96%88%E2%96%88%E2%95%94%E2%95%90%E2%95%90%E2%96%88%E2%96%88%E2%95%97%E2%96%88%E2%96%88%E2%95%94%E2%95%90%E2%95%90%E2%96%88%E2%96%88%E2%95%97" />
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=1&pause=99999&color=C792EA&center=true&vCenter=true&repeat=false&width=400&height=60&lines=PULSAR" alt="Pulsar" />
-</picture>
-
-<br/>
-
-**The terminal AI coding agent that works with any model**
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:c792ea,50:82aaff,100:89ddff&height=200&section=header&text=PULSAR&fontSize=90&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Multi-Provider%20Terminal%20AI%20Coding%20Agent&descAlignY=58&descAlign=50&descSize=18" width="100%" />
 
 <br/>
 
 [![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Models](https://img.shields.io/badge/Models-Gemini%20%7C%20Claude%20%7C%20GPT%20%7C%20Ollama-c792ea?style=for-the-badge&logoColor=white)](#roadmap)
+[![Models](https://img.shields.io/badge/Models-Gemini%20%7C%20Claude%20%7C%20GPT%20%7C%20Ollama-c792ea?style=for-the-badge&logoColor=white)](#-roadmap)
 [![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-0.1.0-f78c6c?style=for-the-badge)](https://github.com/Ashutoshx7/Pulsar/releases)
-[![Stars](https://img.shields.io/github/stars/Ashutoshx7/Pulsar?style=for-the-badge&color=ffcb6b)](https://github.com/Ashutoshx7/Pulsar)
+[![Stars](https://img.shields.io/github/stars/Ashutoshx7/Pulsar?style=for-the-badge&color=ffcb6b&logo=github&logoColor=white)](https://github.com/Ashutoshx7/Pulsar)
 
 <br/>
 
-*Use any AI model. Pay nothing. Extend everything.*
+**Use any AI model. Pay nothing. Extend everything.**
 
 <br/>
 
-[Get Started](#-install) &nbsp;·&nbsp; [Features](#-features) &nbsp;·&nbsp; [Architecture](#-architecture) &nbsp;·&nbsp; [Roadmap](#-roadmap) &nbsp;·&nbsp; [Contributing](#-contributing)
+[Get Started](#-install) &nbsp;&nbsp;|&nbsp;&nbsp; [Features](#-features) &nbsp;&nbsp;|&nbsp;&nbsp; [Architecture](#-architecture) &nbsp;&nbsp;|&nbsp;&nbsp; [Roadmap](#-roadmap) &nbsp;&nbsp;|&nbsp;&nbsp; [Contributing](#-contributing)
+
+<br/>
 
 </div>
 
