@@ -1,68 +1,90 @@
 <div align="center">
 
 ```
- ██████╗ ██╗   ██╗██╗     ███████╗ █████╗ ██████╗
- ██╔══██╗██║   ██║██║     ██╔════╝██╔══██╗██╔══██╗
- ██████╔╝██║   ██║██║     ███████╗███████║██████╔╝
- ██╔═══╝ ██║   ██║██║     ╚════██║██╔══██║██╔══██╗
- ██║     ╚██████╔╝███████╗███████║██║  ██║██║  ██║
- ╚═╝      ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
+██████╗ ██╗   ██╗██╗     ███████╗ █████╗ ██████╗
+██╔══██╗██║   ██║██║     ██╔════╝██╔══██╗██╔══██╗
+██████╔╝██║   ██║██║     ███████╗███████║██████╔╝
+██╔═══╝ ██║   ██║██║     ╚════██║██╔══██║██╔══██╗
+██║     ╚██████╔╝███████╗███████║██║  ██║██║  ██║
+╚═╝      ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝
 ```
 
-**Multi-Provider AI Coding Agent for the Terminal**
+### The terminal AI coding agent that works with any model
 
-[![Python](https://img.shields.io/badge/Python-3.12%2B-blue?style=flat-square&logo=python&logoColor=white)](https://python.org)
-[![License](https://img.shields.io/badge/License-MIT-purple?style=flat-square)](LICENSE)
-[![Version](https://img.shields.io/badge/Version-0.1.0-cyan?style=flat-square)](https://github.com/Ashutoshx7/Pulsar)
-[![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-green?style=flat-square)](https://github.com/Ashutoshx7/Pulsar/pulls)
+<br/>
 
-*Use any AI model. Pay nothing. Extend everything.*
+[![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+[![Gemini](https://img.shields.io/badge/Gemini-2.5_Flash-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://aistudio.google.com)
+[![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
+[![Version](https://img.shields.io/badge/Version-0.1.0-F97316?style=for-the-badge)](https://github.com/Ashutoshx7/Pulsar/releases)
+
+<br/>
+
+> **Use any AI model. Pay nothing. Extend everything.**
+
+<br/>
+
+[Get Started](#install) · [Features](#features) · [Architecture](#architecture) · [Roadmap](#roadmap) · [Contributing](#contributing)
 
 </div>
 
+<br/>
+
 ---
 
-## What is Pulsar?
+## Why Pulsar?
 
-Pulsar is a terminal-based AI coding agent that runs in your existing terminal. You bring a task, Pulsar reads your files, edits your code, runs your tests, and reports back. All through a streaming, beautifully rendered interface.
+Every other terminal coding agent is locked to one company's model. Claude Code needs Anthropic. Codex needs OpenAI. Gemini CLI needs Google.
 
-Unlike other coding agents, Pulsar is not locked to a single AI provider. Today you can use the free Gemini tier. Tomorrow you switch to Claude for a tricky refactor. On a plane with no internet, you run a local Llama model through Ollama. One tool, any brain.
+Pulsar works with all of them. Free Gemini by default. Switch to Claude for complex reasoning. Run Llama locally with Ollama when you need privacy. One beautiful interface, any brain.
+
+<br/>
+
+<div align="center">
+
+| | Claude Code | Aider | Codex CLI | **Pulsar** |
+|:--|:--:|:--:|:--:|:--:|
+| Multi-provider | ❌ | ✅ | ❌ | ✅ |
+| Native tool calling | ✅ | ❌ | ✅ | ✅ |
+| Rich terminal UI | ✅ | ❌ | ❌ | ✅ |
+| MCP support | ✅ | ❌ | ✅ | 🔜 |
+| Plugin system | ❌ | ❌ | ❌ | 🔜 |
+| Free by default | ❌ | ✅ | ❌ | ✅ |
+| Fully open source | ❌ | ✅ | ✅ | ✅ |
+
+</div>
+
+<br/>
+
+---
 
 ## Features
 
-**Core Agent**
+<br/>
 
-- Agentic loop with native function calling
-- Streaming responses rendered in real time
-- Full markdown and syntax-highlighted code output
-- Permission-based security for all file writes and shell commands
-- Git-aware context injection (current branch, changed files)
+<div align="center">
 
-**Premium Terminal UI**
+**⚡ Agentic Loop** · **🎨 Premium TUI** · **🔧 6 Tools** · **🔒 Permission System** · **🌐 Multi-Provider**
 
-- Cosmic-themed interface with color-coded status
-- Animated thinking spinner while the agent processes
-- Plan display before execution, inspired by Codex CLI
-- Colored git diff output for every file edit, inspired by Aider
-- File context tracker showing what the agent is working with
-- Dollar cost and token count after every response, inspired by Aider
-- Persistent status bar showing model, turn count and session cost, inspired by Claude Code
-- Session summary on exit with full stats
+</div>
 
-**Tools the Agent Can Use**
+<br/>
 
-- Read, write, and edit files with surgical precision
-- Run shell commands with your approval
-- Search across your codebase
-- List directory trees
-- Run git operations
+**The Agent**
 
-**Multi-Provider Support** *(coming in v0.3.0)*
+The core is a multi-turn agentic loop powered by native function calling. Pulsar reads your files, edits code, runs commands, searches your codebase, and commits to git. All while streaming responses in real time. When something requires your approval, it stops and asks. Every destructive action needs your explicit yes.
 
-- Gemini 2.5 Flash (default, free tier)
-- Claude Sonnet and Opus
-- GPT-4o and GPT-4o-mini
-- Ollama for fully local, offline, private usage
+**The Interface**
+
+Pulsar has a cosmic-themed terminal UI built with Rich. Responses stream word by word with syntax-highlighted code blocks. Tool calls appear with a warm orange icon as they happen. File diffs show green additions and red removals inline. A persistent status bar tracks your model, turn count, and session cost. When you exit, a summary shows total tokens and time spent.
+
+**The Philosophy**
+
+No vendor lock-in. No mandatory subscriptions. Transparent costs. Full control over what runs on your machine.
+
+<br/>
+
+---
 
 ## Install
 
@@ -70,120 +92,178 @@ Unlike other coding agents, Pulsar is not locked to a single AI provider. Today 
 pip install pulsar-agent
 ```
 
-Or clone and install from source:
+Or install from source for the latest changes:
 
 ```bash
 git clone https://github.com/Ashutoshx7/Pulsar.git
 cd Pulsar
-python -m venv .venv
-source .venv/bin/activate
+python -m venv .venv && source .venv/bin/activate
 pip install -e .
 ```
 
+<br/>
+
+---
+
 ## Setup
 
-Get a free API key from [Google AI Studio](https://aistudio.google.com/apikey) and create a `.env` file:
+**1. Get a free API key**
+
+Go to [aistudio.google.com/apikey](https://aistudio.google.com/apikey) and create a key. The free tier gives you more than enough to work with.
+
+**2. Add it to your project**
 
 ```bash
 echo "GOOGLE_API_KEY=your_key_here" > .env
 ```
 
-## Usage
+**3. Run it**
 
 ```bash
 pulsar
 ```
 
-Type any coding task in natural language:
+<br/>
+
+---
+
+## Usage
+
+Type any coding task in plain English:
 
 ```
-› Fix the authentication bug in src/auth.py
+› Fix the timing attack vulnerability in src/auth.py
 › Add type hints to all functions in utils.py
-› Write tests for the payment module
-› Refactor this class to use dataclasses
+› Write tests for the UserService class
+› Refactor the database module to use async/await
+› Explain what this codebase does
 ```
 
-## Slash Commands
+Pulsar will plan the approach, show you each step, ask for approval before touching your files, and report results.
 
-| Command | Description |
-|---------|-------------|
-| `/help` | Show all available commands |
+**Slash commands available inside Pulsar:**
+
+| Command | What it does |
+|:--------|:-------------|
+| `/help` | Show all commands |
+| `/demo` | Preview every UI component |
+| `/model` | Switch provider or model |
 | `/clear` | Clear the screen |
-| `/model` | Switch AI provider or model |
-| `/demo` | Preview all UI components |
 | `/version` | Show current version |
 | `/exit` | Quit Pulsar |
 
-## Demo Mode
+<br/>
 
-Type `/demo` inside Pulsar to see a full walkthrough of every UI component. It simulates a real agent session including plan display, tool calls, file diffs, permission prompts, and session stats.
+---
 
 ## Architecture
 
-Pulsar is built on three core principles:
+Pulsar is built around two core patterns that make it extensible.
 
 **Adapter Pattern for Providers**
-Every AI provider (Gemini, Claude, OpenAI, Ollama) implements the same `LLMProvider` interface. The agentic loop never knows which model it is talking to. Switching providers is a config change, not a code change.
+
+Every AI provider implements the same `LLMProvider` abstract class. The agentic loop never knows which model it is talking to. Adding a new provider means writing one class. Nothing else changes.
+
+```python
+class LLMProvider(ABC):
+    @abstractmethod
+    def chat(self, messages, tools) -> LLMResponse: ...
+
+    @abstractmethod
+    def stream(self, messages, tools) -> Iterator[str]: ...
+```
 
 **Registry Pattern for Tools**
-Every tool (read file, write file, run command, search) registers itself with the `ToolRegistry`. The agent loop calls tools by name. Adding a new tool means writing one class and registering it. Nothing else changes.
 
-**Agentic Loop**
-The loop sends your message to the model with all tool declarations. If the model responds with a tool call, Pulsar runs it and sends the result back. This continues until the model produces a final text response. The loop handles multiple parallel tool calls, error recovery, and token tracking.
+Every tool registers itself with the `ToolRegistry`. The agent calls tools by name. Adding a new tool means writing one class and one line of registration code.
 
-```
-User Input
-    ↓
-Send to Model (with tool declarations)
-    ↓
-Model responds with tool call(s)?
-    ├── Yes → Run tools → Send results back → repeat
-    └── No  → Stream final response to user
+```python
+registry = ToolRegistry()
+registry.register(ReadFileTool())
+registry.register(WriteFileTool())
+registry.register(RunCommandTool())
 ```
 
-## Project Structure
+**The Agentic Loop**
+
+```
+You type a message
+        ↓
+Sent to model with tool declarations
+        ↓
+Model wants to call a tool?
+    ├── Yes → Run tool → Send result back → repeat
+    └── No  → Stream final answer to you
+```
+
+<br/>
+
+**Project layout:**
 
 ```
 src/pulsar/
-├── cli.py              Entry point and input loop
+├── cli.py                  Entry point and input loop
 ├── agent/
-│   ├── loop.py         The agentic loop
-│   └── messages.py     Conversation history manager
+│   ├── loop.py             The agentic loop
+│   └── messages.py         Conversation history manager
 ├── llm/
-│   ├── base.py         LLMProvider abstract class
-│   └── gemini.py       Gemini implementation
+│   ├── base.py             LLMProvider abstract class
+│   └── gemini.py           Gemini 2.5 Flash implementation
 ├── tools/
-│   ├── registry.py     Tool registry
-│   ├── read_file.py    Read file tool
-│   ├── write_file.py   Write file tool
-│   ├── edit_file.py    Edit file tool
-│   └── run_command.py  Shell command tool
+│   ├── registry.py         Tool registry and executor
+│   ├── read_file.py        Read any file
+│   ├── write_file.py       Create new files
+│   ├── edit_file.py        Surgical find-and-replace edits
+│   ├── run_command.py      Shell commands with approval
+│   └── search_files.py     Search across your codebase
 ├── ui/
-│   ├── themes.py       Color system and icons
-│   ├── console.py      Global Rich console
-│   ├── display.py      All visual components
-│   └── spinner.py      Animated thinking indicator
+│   ├── themes.py           Color palette and icons
+│   ├── console.py          Global Rich console instance
+│   ├── display.py          Every visual component
+│   └── spinner.py          Animated thinking indicator
 └── config/
-    └── __init__.py     Constants and defaults
+    └── __init__.py         App constants and defaults
 ```
+
+<br/>
+
+---
 
 ## Roadmap
 
-**v0.1.0** (current) · UI system, CLI skeleton, slash commands, demo mode
+<br/>
 
-**v0.2.0** · Gemini provider connected, full agentic loop, 6 tools, file editing with permission prompts
+<div align="center">
 
-**v0.3.0** · Multi-provider support (Claude, GPT-4o, Ollama), live model switching
+```
+v0.1.0   v0.2.0   v0.3.0   v0.4.0   v0.5.0   v1.0.0
+  UI   →  Agent  →  Multi  →  MCP   →  Smart  →  Ship
+ Done    In Dev   Provider  Plugins  Memory   Prod
+```
 
-**v0.4.0** · MCP protocol client, Python plugin system
+</div>
 
-**v0.5.0** · Codebase indexing, web search, persistent memory
+<br/>
 
-**v1.0.0** · Headless CI mode, Docker sandbox, auto-loop
+**v0.1.0** · UI system, CLI skeleton, slash commands, demo mode ✅
+
+**v0.2.0** · Gemini provider connected, full agentic loop, 6 tools, file editing 🔧
+
+**v0.3.0** · Claude, GPT-4o, and Ollama providers, live model switching 🔜
+
+**v0.4.0** · MCP protocol client, Python plugin system 🔜
+
+**v0.5.0** · Codebase indexing, web search, persistent memory 🔜
+
+**v1.0.0** · Headless CI mode, Docker sandbox, auto-loop for autonomous tasks 🔜
+
+<br/>
+
+---
 
 ## Contributing
 
-Pull requests are welcome. For major changes, open an issue first to discuss what you would like to change.
+Pulsar is actively being built in public. Contributions are welcome at any stage.
 
 ```bash
 git clone https://github.com/Ashutoshx7/Pulsar.git
@@ -193,16 +273,20 @@ pip install -e .
 pulsar --version
 ```
 
-## License
+Open an issue before starting large changes. Small fixes and improvements can go straight to a pull request.
 
-[MIT](LICENSE)
+<br/>
 
 ---
 
 <div align="center">
 
-Built with Python · Powered by Gemini · Open Source
+Built with Python · Powered by [Gemini](https://aistudio.google.com) · Inspired by Claude Code, Aider, and Codex CLI
 
-*Freedom of choice. Free by default. Extensible by design.*
+<br/>
+
+*If this project is useful to you, consider giving it a star.*
+
+[![Star on GitHub](https://img.shields.io/github/stars/Ashutoshx7/Pulsar?style=social)](https://github.com/Ashutoshx7/Pulsar)
 
 </div>
