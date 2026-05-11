@@ -1,10 +1,10 @@
-"""Pulsar Display — Clean, minimal, professional.
+"""Pulsar Display — Cosmic visual system, enhanced.
 
-Design rules:
-1. Whitespace > decoration
-2. Color only for meaning
-3. No walls of symbols
-4. Let content breathe
+Original Pulsar aesthetic (banner, panels, cosmic icons) upgraded with:
+- Cleaner tool call grouping with │ block lines
+- Better thinking display
+- Compact but rich token display
+- Improved spacing and breathing room
 """
 
 from rich.panel import Panel
@@ -16,40 +16,65 @@ from rich import box
 
 from pulsar.ui.console import console
 from pulsar.ui.themes import (
-    FG, FG_MUTED, FG_DIM, FG_FAINT,
-    ACCENT, ACCENT_DIM, BLUE, GREEN, YELLOW, RED, ORANGE, CYAN,
-    PROMPT_CHAR, ARROW, DOT, CHECK, CROSS, WARN,
-    TOOL_ICON, THINK_ICON, BLOCK,
+    NEBULA, NEBULA_DIM, PLASMA, CYAN_GLOW, STAR_GOLD, NOVA_RED,
+    SOLAR_GREEN, COMET_ORANGE, DUST, STARDUST, WHITE_HOT, DEEP_GRAY,
+    ARROW_RIGHT, CHEVRON, DIAMOND, STAR, SPARK, GEAR, CHECK, CROSS,
+    WARNING_ICON, DOT, BLOCK, TOOL_ARROW, CIRCLE_DOT,
 )
 from pulsar import __version__
 
 
 # ═══════════════════════════════════════════════════════════════════
-# WELCOME
+# WELCOME SCREEN
 # ═══════════════════════════════════════════════════════════════════
 
+BANNER = r"""
+[bold #c792ea] ██████╗ ██╗   ██╗██╗     ███████╗ █████╗ ██████╗[/]
+[bold #c792ea] ██╔══██╗██║   ██║██║     ██╔════╝██╔══██╗██╔══██╗[/]
+[bold #89ddff] ██████╔╝██║   ██║██║     ███████╗███████║██████╔╝[/]
+[bold #89ddff] ██╔═══╝ ██║   ██║██║     ╚════██║██╔══██║██╔══██╗[/]
+[bold #82aaff] ██║     ╚██████╔╝███████╗███████║██║  ██║██║  ██║[/]
+[bold #82aaff] ╚═╝      ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝[/]"""
+
+
 def show_welcome() -> None:
-    """Minimal, clean welcome. No ASCII art wall — just identity."""
+    """Display the cosmic welcome screen."""
+    console.print()
+    console.print(BANNER)
     console.print()
 
-    # Brand name — large and clear
-    brand = Text()
-    brand.append("  pulsar", style=f"bold {ACCENT}")
-    brand.append(f"  v{__version__}", style=f"{FG_DIM}")
-    console.print(brand)
+    # Tagline
+    tagline = Text(justify="center")
+    tagline.append(f" {STAR} ", style=f"bold {NEBULA}")
+    tagline.append("Multi-Provider AI Coding Agent", style=f"bold {WHITE_HOT}")
+    tagline.append(f" {STAR}", style=f"bold {NEBULA}")
+    console.print(tagline)
     console.print()
 
-    # Status line
-    status = Text()
-    status.append("  model ", style=f"{FG_DIM}")
-    status.append("gemini-2.5-flash", style=f"bold {BLUE}")
-    status.append(f"  {DOT}  ", style=f"{FG_FAINT}")
-    status.append("tools ", style=f"{FG_DIM}")
-    status.append("0 loaded", style=f"{FG_MUTED}")
-    console.print(status)
+    # Status bar — compact info strip
+    info = Text(justify="center")
+    info.append(f" {DIAMOND} ", style=f"{STARDUST}")
+    info.append(f"v{__version__}", style=f"{STARDUST}")
+    info.append(f"   {SPARK} ", style=f"{PLASMA}")
+    info.append("gemini-2.5-flash", style=f"bold {PLASMA}")
+    info.append(f"   {GEAR} ", style=f"{DUST}")
+    info.append("0 tools", style=f"{DUST}")
+    console.print(info)
 
     console.print()
-    console.print(Rule(style=f"{FG_FAINT}"))
+    console.print(Rule(style=f"{DEEP_GRAY}"))
+    console.print()
+
+    # Hints
+    hints = Text(justify="center")
+    hints.append("Type a message to start", style=f"{STARDUST}")
+    hints.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+    hints.append("/help", style=f"bold {CYAN_GLOW}")
+    hints.append(" for commands", style=f"{STARDUST}")
+    hints.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+    hints.append("Ctrl+C", style=f"bold {STAR_GOLD}")
+    hints.append(" to exit", style=f"{STARDUST}")
+    console.print(hints)
     console.print()
 
 
@@ -58,22 +83,22 @@ def show_welcome() -> None:
 # ═══════════════════════════════════════════════════════════════════
 
 def show_user_message(message: str) -> None:
-    """Show what the user typed."""
+    """Display what the user typed."""
     text = Text()
-    text.append(f"  {PROMPT_CHAR} ", style=f"bold {ACCENT}")
-    text.append(message, style=f"{FG}")
+    text.append(f" {CHEVRON} ", style=f"bold {NEBULA}")
+    text.append(message, style=f"{WHITE_HOT}")
     console.print(text)
 
 
 # ═══════════════════════════════════════════════════════════════════
-# RESPONSE
+# RESPONSES
 # ═══════════════════════════════════════════════════════════════════
 
 def show_response(content: str) -> None:
-    """Render AI response with markdown. Clean, left-aligned."""
+    """Render AI response — markdown with syntax highlighting."""
     console.print()
-    md = Markdown(content, code_theme="monokai")
-    console.print(md, width=min(console.width - 4, 96))
+    md = Markdown(content, code_theme="one-dark")
+    console.print(md, width=min(console.width - 2, 96))
     console.print()
 
 
@@ -94,73 +119,73 @@ def show_streaming_end() -> None:
 
 
 # ═══════════════════════════════════════════════════════════════════
-# TOOL CALLS — the heart of the agent UI
+# TOOL CALLS — grouped with block lines
 # ═══════════════════════════════════════════════════════════════════
 
 def show_tool_call(tool_name: str, args: dict) -> None:
-    """Show a tool being invoked — compact, informative."""
+    """Show a tool being invoked — icon + name + key arg."""
     line = Text()
-    line.append(f"  {TOOL_ICON} ", style=f"bold {ORANGE}")
-    line.append(tool_name, style=f"bold {ORANGE}")
+    line.append(f"  {TOOL_ARROW} ", style=f"bold {COMET_ORANGE}")
+    line.append(tool_name, style=f"bold {COMET_ORANGE}")
 
     if args:
-        # Show the most important arg inline
         first_key = next(iter(args))
         first_val = str(args[first_key])
-        if len(first_val) > 50:
-            first_val = first_val[:47] + "..."
-        line.append(f"  {first_val}", style=f"{FG_MUTED}")
+        if len(first_val) > 55:
+            first_val = first_val[:52] + "..."
+        line.append(f"  {ARROW_RIGHT} ", style=f"{DUST}")
+        line.append(first_val, style=f"{STARDUST}")
 
     console.print(line)
 
 
 def show_tool_result(tool_name: str, success: bool = True) -> None:
-    """Compact success/fail indicator."""
+    """Compact tool completion status."""
     line = Text()
     if success:
-        line.append(f"  {CHECK} ", style=f"{GREEN}")
-        line.append("done", style=f"{FG_DIM}")
+        line.append(f"  {CHECK} ", style=f"bold {SOLAR_GREEN}")
+        line.append(f"{tool_name} completed", style=f"{DUST}")
     else:
-        line.append(f"  {CROSS} ", style=f"{RED}")
-        line.append("failed", style=f"{FG_DIM}")
+        line.append(f"  {CROSS} ", style=f"bold {NOVA_RED}")
+        line.append(f"{tool_name} failed", style=f"{DUST}")
     console.print(line)
 
 
-def show_tool_output(output: str, max_lines: int = 15) -> None:
-    """Show tool output — indented, subtle, truncated."""
+def show_tool_output(output: str, max_lines: int = 20) -> None:
+    """Show tool output — indented with block character for grouping."""
     lines = output.split("\n")
     if len(lines) > max_lines:
-        display = "\n".join(lines[:max_lines])
-        display += f"\n  ... +{len(lines) - max_lines} lines"
+        display_lines = lines[:max_lines]
+        display_lines.append(f"... +{len(lines) - max_lines} more lines")
     else:
-        display = output
+        display_lines = lines
 
-    # Indent each line with the block character for visual grouping
-    indented_lines = []
-    for line in display.split("\n"):
-        indented_lines.append(f"  {BLOCK} {line}")
-    indented = "\n".join(indented_lines)
-
-    console.print(Text(indented, style=f"{FG_DIM}"))
+    for line in display_lines:
+        text = Text()
+        text.append(f"  {BLOCK} ", style=f"{DEEP_GRAY}")
+        text.append(line, style=f"{STARDUST}")
+        console.print(text)
 
 
 # ═══════════════════════════════════════════════════════════════════
-# PERMISSION
+# PERMISSION — panel style (clear, intentional)
 # ═══════════════════════════════════════════════════════════════════
 
 def show_permission_request(action: str, detail: str) -> bool:
-    """Ask for approval. Clean, non-scary but clear."""
+    """Ask user to approve a dangerous action. Returns True if approved."""
     console.print()
-
-    line = Text()
-    line.append(f"  {WARN} ", style=f"bold {YELLOW}")
-    line.append(f"{action}: ", style=f"bold {YELLOW}")
-    line.append(detail, style=f"{FG}")
-    console.print(line)
+    panel = Panel(
+        Text(detail, style=f"{WHITE_HOT}"),
+        title=Text(f" {WARNING_ICON}  {action} ", style=f"bold {STAR_GOLD}"),
+        border_style=f"{STAR_GOLD}",
+        box=box.ROUNDED,
+        padding=(0, 1),
+    )
+    console.print(panel)
 
     prompt = Text()
-    prompt.append("  allow? ", style=f"{FG_MUTED}")
-    prompt.append("[y/n] ", style=f"{FG_DIM}")
+    prompt.append(f"  Allow? ", style=f"bold {STAR_GOLD}")
+    prompt.append("[y/n] ", style=f"{DUST}")
     console.print(prompt, end="")
 
     try:
@@ -176,42 +201,42 @@ def show_permission_request(action: str, detail: str) -> bool:
 # ═══════════════════════════════════════════════════════════════════
 
 def show_thinking(message: str = "Thinking") -> None:
-    """Subtle thinking indicator."""
+    """Thinking indicator with cosmic icon."""
     text = Text()
-    text.append(f"  {THINK_ICON} ", style=f"{ACCENT_DIM}")
-    text.append(f"{message}...", style=f"italic {ACCENT_DIM}")
+    text.append(f"  {CIRCLE_DOT} ", style=f"bold {NEBULA_DIM}")
+    text.append(f"{message}...", style=f"italic {NEBULA_DIM}")
     console.print(text)
 
 
 def show_thinking_content(thought: str) -> None:
-    """Show model's internal reasoning — dimmed, indented."""
+    """Show model reasoning — indented with block lines, dimmed italic."""
     lines = thought.strip().split("\n")
     console.print()
     for line in lines:
         text = Text()
-        text.append(f"  {BLOCK} ", style=f"{FG_FAINT}")
-        text.append(line, style=f"italic {FG_DIM}")
+        text.append(f"  {BLOCK} ", style=f"{NEBULA_DIM}")
+        text.append(line, style=f"italic {DUST}")
         console.print(text)
     console.print()
 
 
 # ═══════════════════════════════════════════════════════════════════
-# TOKENS
+# TOKEN USAGE
 # ═══════════════════════════════════════════════════════════════════
 
 def show_token_usage(
     input_tokens: int, output_tokens: int, model: str = ""
 ) -> None:
-    """Compact token display — right after response."""
+    """Token usage — compact single line with model name."""
     line = Text()
     line.append("  ", style="")
     if model:
-        line.append(model, style=f"{FG_DIM}")
-        line.append(f"  {DOT}  ", style=f"{FG_FAINT}")
-    line.append(f"{input_tokens:,}", style=f"{FG_DIM}")
-    line.append(" in ", style=f"{FG_FAINT}")
-    line.append(f"{output_tokens:,}", style=f"{FG_DIM}")
-    line.append(" out", style=f"{FG_FAINT}")
+        line.append(f"{SPARK} ", style=f"{PLASMA}")
+        line.append(model, style=f"{PLASMA}")
+        line.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+    line.append(f"{input_tokens:,} in", style=f"{DUST}")
+    line.append(f"  {DOT}  ", style=f"{DEEP_GRAY}")
+    line.append(f"{output_tokens:,} out", style=f"{DUST}")
     console.print(line)
 
 
@@ -220,38 +245,46 @@ def show_token_usage(
 # ═══════════════════════════════════════════════════════════════════
 
 def show_error(title: str, detail: str = "") -> None:
-    """Error — red, clear, not panicky."""
+    """Error — red panel, clear and intentional."""
     console.print()
-    line = Text()
-    line.append(f"  {CROSS} ", style=f"bold {RED}")
-    line.append(title, style=f"bold {RED}")
-    console.print(line)
     if detail:
-        console.print(Text(f"    {detail}", style=f"{FG_MUTED}"))
+        panel = Panel(
+            Text(detail, style=f"{WHITE_HOT}"),
+            title=Text(f" {CROSS}  {title} ", style=f"bold {NOVA_RED}"),
+            border_style=f"{NOVA_RED}",
+            box=box.ROUNDED,
+            padding=(0, 1),
+        )
+        console.print(panel)
+    else:
+        line = Text()
+        line.append(f"  {CROSS} ", style=f"bold {NOVA_RED}")
+        line.append(title, style=f"bold {NOVA_RED}")
+        console.print(line)
     console.print()
 
 
 def show_warning(message: str) -> None:
-    """Warning — yellow, one line."""
+    """Warning — gold, one line."""
     line = Text()
-    line.append(f"  {WARN} ", style=f"bold {YELLOW}")
-    line.append(message, style=f"{YELLOW}")
+    line.append(f"  {WARNING_ICON}  ", style=f"bold {STAR_GOLD}")
+    line.append(message, style=f"{STAR_GOLD}")
     console.print(line)
 
 
 def show_success(message: str) -> None:
-    """Success — green check, one line."""
+    """Success — green check."""
     line = Text()
-    line.append(f"  {CHECK} ", style=f"{GREEN}")
-    line.append(message, style=f"{FG_MUTED}")
+    line.append(f"  {CHECK} ", style=f"bold {SOLAR_GREEN}")
+    line.append(message, style=f"{SOLAR_GREEN}")
     console.print(line)
 
 
 def show_info(message: str) -> None:
-    """Info — subtle, no icon bloat."""
+    """Info — diamond + subtle text."""
     line = Text()
-    line.append(f"  {DOT} ", style=f"{ACCENT_DIM}")
-    line.append(message, style=f"{FG_MUTED}")
+    line.append(f"  {DIAMOND} ", style=f"bold {PLASMA}")
+    line.append(message, style=f"{STARDUST}")
     console.print(line)
 
 
@@ -260,14 +293,16 @@ def show_info(message: str) -> None:
 # ═══════════════════════════════════════════════════════════════════
 
 def show_separator() -> None:
-    """Subtle horizontal divider."""
-    console.print(Rule(style=f"{FG_FAINT}"))
+    """Subtle cosmic divider."""
+    console.print(Rule(style=f"{DEEP_GRAY}"))
 
 
 def show_goodbye() -> None:
-    """Clean exit."""
+    """Cosmic goodbye."""
     console.print()
-    line = Text()
-    line.append("  goodbye", style=f"italic {FG_DIM}")
-    console.print(line)
+    text = Text()
+    text.append(f"  {STAR} ", style=f"bold {NEBULA}")
+    text.append("See you next time, pilot.", style=f"italic {STARDUST}")
+    text.append(f" {STAR}", style=f"bold {NEBULA}")
+    console.print(text)
     console.print()

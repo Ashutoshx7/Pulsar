@@ -1,4 +1,4 @@
-"""Pulsar Console — Single Rich console instance for the app."""
+"""Pulsar Console — Single Rich console instance."""
 
 from rich.console import Console
 from pulsar.ui.themes import PULSAR_THEME

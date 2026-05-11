@@ -1,10 +1,6 @@
 """Pulsar CLI — Main entry point.
 
-Handles:
-1. Click CLI setup (--version, --provider, --model)
-2. Interactive input loop
-3. Slash command routing
-4. Graceful shutdown
+Handles: Click CLI, input loop, slash commands, graceful shutdown.
 """
 
 import click
@@ -31,6 +27,7 @@ from pulsar.ui.display import (
     show_goodbye,
 )
 from pulsar.ui.spinner import thinking_spinner
+from pulsar.ui.themes import NEBULA, CYAN_GLOW, STARDUST, DUST, PLASMA
 
 
 # ─── Slash Commands ─────────────────────────────────────────────────
@@ -53,7 +50,7 @@ def handle_slash_command(command: str) -> bool:
         return True
 
     elif cmd == "/version":
-        show_info(f"pulsar v{__version__}")
+        show_info(f"Pulsar v{__version__}")
         return True
 
     elif cmd == "/demo":
@@ -61,46 +58,56 @@ def handle_slash_command(command: str) -> bool:
         return True
 
     else:
-        show_warning(f"unknown command: {cmd}")
+        show_warning(f"Unknown command: {cmd}. Type /help for commands.")
         return True
 
 
 def _show_help() -> None:
-    """Minimal help display."""
-    from pulsar.ui.themes import FG, FG_MUTED, FG_DIM, CYAN, ACCENT
-    from rich.text import Text
+    """Display commands in a cosmic styled table."""
+    from rich.table import Table
+    from pulsar.ui.themes import DEEP_GRAY
 
     console.print()
+    table = Table(
+        show_header=True,
+        header_style=f"bold {CYAN_GLOW}",
+        border_style=f"{DEEP_GRAY}",
+        title="Commands",
+        title_style=f"bold {NEBULA}",
+        padding=(0, 2),
+    )
+    table.add_column("Command", style=f"bold {CYAN_GLOW}", min_width=12)
+    table.add_column("Description", style=f"{STARDUST}")
+
     commands = [
-        ("/help", "show this message"),
-        ("/clear", "clear screen"),
-        ("/version", "show version"),
-        ("/model", "switch model (coming soon)"),
-        ("/demo", "preview all UI components"),
-        ("/exit", "quit pulsar"),
+        ("/help", "Show this help message"),
+        ("/clear", "Clear screen"),
+        ("/version", "Show Pulsar version"),
+        ("/model", "Switch model (coming soon)"),
+        ("/demo", "Preview all UI components"),
+        ("/exit", "Exit Pulsar"),
     ]
     for cmd, desc in commands:
-        line = Text()
-        line.append(f"  {cmd:<12}", style=f"bold {CYAN}")
-        line.append(desc, style=f"{FG_DIM}")
-        console.print(line)
+        table.add_row(cmd, desc)
+
+    console.print(table)
     console.print()
 
 
 def _run_demo() -> None:
-    """Demo all UI components — for development/testing."""
+    """Demo showcasing all UI components."""
     import time
 
     console.print()
     show_separator()
-    show_info("running UI demo...")
+    show_info("Running UI component demo...")
     console.print()
 
-    # Thinking
-    show_thinking("analyzing codebase")
+    # 1. Thinking indicator
+    show_thinking("Analyzing your codebase")
     console.print()
 
-    # Thinking content (model reasoning)
+    # 2. Thinking content (model reasoning)
     show_thinking_content(
         "The user wants to fix the login bug.\n"
         "1. Read the auth module\n"
@@ -108,19 +115,19 @@ def _run_demo() -> None:
         "3. Check test expectations"
     )
 
-    # Tool calls
+    # 3. Tool calls with block-line output
     show_tool_call("read_file", {"path": "src/auth.py"})
     show_tool_result("read_file", success=True)
     show_tool_output(
         "def verify_password(password, stored_hash):\n"
         "    password_hash = hash_password(password)\n"
-        "    if password_hash == stored_hash:  # BUG: timing attack\n"
+        "    if password_hash == stored_hash:  # BUG\n"
         "        return True\n"
         "    return False"
     )
     console.print()
 
-    show_tool_call("edit_file", {"path": "src/auth.py", "old": "==", "new": "hmac.compare_digest"})
+    show_tool_call("edit_file", {"path": "src/auth.py"})
     show_tool_result("edit_file", success=True)
     console.print()
 
@@ -128,12 +135,12 @@ def _run_demo() -> None:
     show_tool_result("run_command", success=False)
     console.print()
 
-    # Permission
-    show_info("permission prompt example:")
-    show_permission_request("write file", "src/auth.py (3 lines changed)")
+    # 4. Permission prompt
+    show_info("Permission prompt example:")
+    show_permission_request("Write File", "src/auth.py (3 lines changed)")
     console.print()
 
-    # Response
+    # 5. AI response with markdown
     show_response(
         "Fixed the timing attack vulnerability in `auth.py`. "
         "The password comparison now uses `hmac.compare_digest()` "
@@ -145,27 +152,27 @@ def _run_demo() -> None:
         "All tests passing."
     )
 
-    # Token usage
+    # 6. Token usage
     show_token_usage(1_847, 234, "gemini-2.5-flash")
 
-    # Status messages
+    # 7. Status messages
     console.print()
-    show_success("12 tests passing")
-    show_warning("large file detected (>500KB)")
-    show_error("rate limit", "retrying in 30s...")
+    show_success("All 12 tests passing")
+    show_warning("Large file detected (>500KB)")
+    show_error("API Error", "Rate limit exceeded. Retrying in 30s...")
 
     show_separator()
-    show_info("demo complete")
+    show_info("Demo complete!")
     console.print()
 
 
 # ─── Input Loop ─────────────────────────────────────────────────────
 
 def get_user_input() -> str:
-    """Get input using prompt_toolkit."""
+    """Get input using prompt_toolkit with cosmic styling."""
     try:
         user_input = pt_prompt(
-            HTML('<style fg="#a78bfa" bold="true"> ❯ </style>'),
+            HTML('<style fg="#c792ea" bold="true"> › </style>'),
         )
         return user_input.strip()
     except (EOFError, KeyboardInterrupt):
@@ -185,15 +192,15 @@ def input_loop() -> None:
                 handle_slash_command(user_input)
                 continue
 
-            # TODO: Day 2 — send to LLM provider
-            with thinking_spinner("processing"):
+            # TODO: Day 2 — send to Gemini provider
+            with thinking_spinner("Processing"):
                 import time
                 time.sleep(1)
 
             show_response(
-                f"*echo mode* — no provider connected yet.\n\n"
-                f"> {user_input}\n\n"
-                f"Connect Gemini on Day 2 to get real responses."
+                f"**Echo mode** — LLM provider not connected yet.\n\n"
+                f"You said: *\"{user_input}\"*\n\n"
+                f"Connect a provider on Day 2 to get real responses."
             )
             show_token_usage(0, 0, "none")
 
@@ -208,11 +215,11 @@ def input_loop() -> None:
 # ─── Entry Point ────────────────────────────────────────────────────
 
 @click.command()
-@click.version_option(version=__version__, prog_name="pulsar")
-@click.option("--provider", default="gemini", help="LLM provider")
-@click.option("--model", default=None, help="Model to use")
+@click.version_option(version=__version__, prog_name="Pulsar")
+@click.option("--provider", default="gemini", help="LLM provider to use")
+@click.option("--model", default=None, help="Specific model to use")
 def main(provider: str, model: str) -> None:
-    """pulsar — multi-provider AI coding agent"""
+    """Pulsar — Multi-Provider AI Coding Agent"""
     show_welcome()
     input_loop()
 

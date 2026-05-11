@@ -1,4 +1,4 @@
-"""Pulsar Spinner — Minimal animated thinking indicator."""
+"""Pulsar Spinner — Animated thinking indicator with cosmic styling."""
 
 from contextlib import contextmanager
 from rich.spinner import Spinner
@@ -6,12 +6,12 @@ from rich.live import Live
 from rich.text import Text
 
 from pulsar.ui.console import console
-from pulsar.ui.themes import ACCENT_DIM, FG_DIM
+from pulsar.ui.themes import NEBULA_DIM, DUST
 
 
 @contextmanager
 def thinking_spinner(message: str = "Thinking"):
-    """Show a subtle animated spinner while work happens.
+    """Show animated spinner while work happens.
 
     Usage:
         with thinking_spinner("Reading files"):
@@ -19,9 +19,10 @@ def thinking_spinner(message: str = "Thinking"):
             pass
     """
     spinner_text = Text()
-    spinner_text.append(f"  {message}...", style=f"italic {ACCENT_DIM}")
+    spinner_text.append(f"  {message}", style=f"italic {NEBULA_DIM}")
+    spinner_text.append("...", style=f"italic {DUST}")
 
-    spinner = Spinner("dots", text=spinner_text, style=f"{ACCENT_DIM}")
+    spinner = Spinner("dots", text=spinner_text, style=f"bold {NEBULA_DIM}")
 
-    with Live(spinner, console=console, refresh_per_second=10, transient=True):
+    with Live(spinner, console=console, refresh_per_second=12, transient=True):
         yield
