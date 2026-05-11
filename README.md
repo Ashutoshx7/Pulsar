@@ -14,7 +14,7 @@
 <br/>
 
 [![Python](https://img.shields.io/badge/Python-3.12+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
-[![Gemini](https://img.shields.io/badge/Gemini-2.5_Flash-8E75B2?style=for-the-badge&logo=google&logoColor=white)](https://aistudio.google.com)
+[![Models](https://img.shields.io/badge/Models-Gemini_%7C_Claude_%7C_GPT_%7C_Ollama-8E75B2?style=for-the-badge&logo=openai&logoColor=white)](#roadmap)
 [![License](https://img.shields.io/badge/License-MIT-22C55E?style=for-the-badge)](LICENSE)
 [![Version](https://img.shields.io/badge/Version-0.1.0-F97316?style=for-the-badge)](https://github.com/Ashutoshx7/Pulsar/releases)
 
@@ -281,7 +281,7 @@ Open an issue before starting large changes. Small fixes and improvements can go
 
 <div align="center">
 
-Built with Python · Powered by [Gemini](https://aistudio.google.com) · Inspired by Claude Code, Aider, and Codex CLI
+Built with Python · Works with any LLM · Inspired by Claude Code, Aider, and Codex CLI
 
 <br/>
 
